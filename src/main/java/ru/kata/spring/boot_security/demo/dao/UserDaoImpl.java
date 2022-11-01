@@ -27,6 +27,16 @@ public class UserDaoImpl implements UserDao {
         return query.getResultList();
     }
 
+    public boolean add(User user) {
+        entityManager.persist(user);
+        return true;
+    }
+    public User findByName(String username) {
+        return entityManager.createQuery("select u FROM User u JOIn fETCH u.roles WHERe u.username = :id", User.class)
+                .setParameter("id", username)
+                .getResultList().stream().findAny().orElse(null);
+    }
+
     @Override
     public void saveUser(User user) {
         entityManager.merge(user);

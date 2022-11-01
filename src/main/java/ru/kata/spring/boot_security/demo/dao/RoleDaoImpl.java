@@ -10,29 +10,29 @@ import java.util.List;
 public class RoleDaoImpl implements RoleDao {
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
-    public boolean add(Role user) {
-        em.persist(user);
+    public boolean add(Role role) {
+        entityManager.persist(role);
         return true;
     }
 
     public Role findByIdRole(Long id) {
-        return em.find(Role.class, id);
+        return entityManager.find(Role.class, id);
     }
 
     public List<Role> listRoles() {
-        return em.createQuery("select s from Role s", Role.class).getResultList();
+        return entityManager.createQuery("select s from Role s", Role.class).getResultList();
     }
 
     public Role findByName(String name) {
-        return em.createQuery("select u FROM Role u WHERe u.role = :id", Role.class)
+        return entityManager.createQuery("select u FROM Role u WHERe u.role = :id", Role.class)
                 .setParameter("id", name)
                 .getResultList().stream().findAny().orElse(null);
     }
 
     public List<Role> listByName(List<String> name) {
-        return  em.createQuery("select u FROM Role u WHERe u.role in (:id)", Role.class)
+        return  entityManager.createQuery("select u FROM Role u WHERe u.role in (:id)", Role.class)
                 .setParameter("id", name)
                 .getResultList();
     }

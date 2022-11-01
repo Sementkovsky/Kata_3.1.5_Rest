@@ -11,11 +11,13 @@ public interface UserDao {
     User getById(int id);
 
     List<User> listUsers();
-
+    public boolean add(User user);
     void saveUser(User user);
 
     void removeUser(int id);
 
     void updateUser(User user);
+
+    User findByName(String username);
 
 }

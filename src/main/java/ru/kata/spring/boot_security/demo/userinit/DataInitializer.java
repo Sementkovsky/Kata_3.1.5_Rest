@@ -31,7 +31,7 @@ public class DataInitializer {
         roleUser.add(role2);
 
         User user1 = new User("admin", "admin", "Джон", "Леннон", 40, roleAdmin);
-        User user2 = new User("admin", "admin", "Пол", "МакКартни", 39, roleUser);
+        User user2 = new User("user", "user", "Пол", "МакКартни", 39, roleUser);
 
         // User user1 = new User("admin", "admin", "ad@min",roleAdmin);
        // User user2 = new User("user", "user",  "us@er", roleUser);

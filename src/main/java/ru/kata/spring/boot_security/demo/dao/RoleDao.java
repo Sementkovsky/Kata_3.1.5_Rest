@@ -7,6 +7,7 @@ import java.util.List;
 public interface RoleDao {
     Role findByIdRole(Long id);
     List<Role> listRoles();
+    public boolean add(Role role);
     Role findByName(String name);
     List<Role> listByName(List<String> name);
 }
