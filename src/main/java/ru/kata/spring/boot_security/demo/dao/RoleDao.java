@@ -4,7 +4,7 @@ import ru.kata.spring.boot_security.demo.model.Role;
 
 import java.util.List;
 
-public interface RolDaoInterf {
+public interface RoleDao {
     Role findByIdRole(Long id);
     List<Role> listRoles();
     Role findByName(String name);
