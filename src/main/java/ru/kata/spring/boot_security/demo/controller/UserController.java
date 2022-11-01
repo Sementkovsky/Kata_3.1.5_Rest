@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/user-update/{id}")
-    public String editForm(@PathVariable("id") int id, Model model) {
+    public String editForm(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
         return "/user-update";
@@ -56,14 +56,14 @@ public class UserController {
     }
 
     @GetMapping("/user-delete/{id}")
-    public String deleteForm(@PathVariable("id") int id, Model model) {
+    public String deleteForm(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
         return "/user-delete";
     }
 
     @DeleteMapping("/user-delete")
-    public String deleteUser(int id) {
+    public String deleteUser(Long id) {
         userService.removeUser(id);
         return "redirect:/users";
     }

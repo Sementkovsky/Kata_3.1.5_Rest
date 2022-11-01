@@ -1,5 +1,7 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,8 +14,9 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 
-
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public User getById(int id) {
+    public User getById(Long id) {
         return userDao.getById(id);
     }
 
@@ -67,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void removeUser(int id) {
+    public void removeUser(Long id) {
         userDao.removeUser(id);
     }
 
@@ -77,9 +80,24 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
+    public User findByUsername(String userName) {
+        return userDao.findByName(userName);
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    User userBas = findByUsername(username);
+
+        if (userBas == null) {
+            throw new UsernameNotFoundException(username + " not found");
+        }
+        UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), aug(userBas.getRoles()));
+        return userBas;
+    }
+    private Collection<? extends GrantedAuthority> aug(Collection<Role> roles) {
+        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))
+                .collect(Collectors.toList());
     }
 }
 

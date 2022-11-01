@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface UserDao {
 
-    User getById(int id);
+    User getById(Long id);
 
     List<User> listUsers();
     public boolean add(User user);
     void saveUser(User user);
 
-    void removeUser(int id);
+    void removeUser(Long id);
 
     void updateUser(User user);
 
