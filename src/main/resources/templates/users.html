@@ -20,6 +20,7 @@
         <tr>
             <th>Id</th>
             <th>Username</th>
+            <th>Password</th>
             <th>First Name</th>
             <th>Second Name</th>
             <th>Age</th>
@@ -30,6 +31,7 @@
         <tr th:each ="user : ${listUsers}">
             <td th:utext="${user.getId()}">...</td>
             <td th:utext="${user.getUsername()}">...</td>
+            <td th:text="${user.password}"></td>
             <td th:utext="${user.getName()}">...</td>
             <td th:utext="${user.getSecondName()}">...</td>
             <td th:utext="${user.age}">...</td>
@@ -44,6 +46,10 @@
             <td><a th:href="@{/user-delete/{id}(id=${user.getId})}">Удалить</a></td>
         </tr>
     </table>
+    <br/><br/>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </div>
 
 </body>
