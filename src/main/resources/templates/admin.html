@@ -36,11 +36,9 @@
             <td th:utext="${user.getSecondName()}">...</td>
             <td th:utext="${user.age}">...</td>
             <td>
-                <!--                    <ul>-->
                 <th:block th:each="msg : ${user.getRoles()}">
                     <li th:text="${msg.getNoPrefix()}"></li>
                 </th:block>
-                <!--                    </ul>-->
             </td>
             <td><a th:href="@{/user-update/{id}(id=${user.getId})}">Изменить</a></td>
             <td><a th:href="@{/user-delete/{id}(id=${user.getId})}">Удалить</a></td>

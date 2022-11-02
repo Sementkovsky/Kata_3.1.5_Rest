@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
-import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,10 +27,10 @@ public class UserController {
         return "index";
     }
 
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/admin")
     public String showUsers(Model model) {
         model.addAttribute("listUsers", userService.listUsers());
-        return "users";
+        return "admin";
     }
 
     @GetMapping("/add")
@@ -63,7 +62,7 @@ public class UserController {
         List<Role> roleList = userService.listByRole(list);
         user.setRoles(roleList);
         userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/user-delete/{id}")
@@ -76,6 +75,6 @@ public class UserController {
     @DeleteMapping("/user-delete")
     public String deleteUser(Long id) {
         userService.removeUser(id);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 }
