@@ -11,32 +11,31 @@
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <br/>
     <br/>
-    <label for="name">Username</label>
+    <label for="name">Username: </label>
     <input type="text" th:field="*{username}" id="username" placeholder="Username">
     <br/>
-    <label for="name">Password</label>
+    <br/>
+    <label for="name">Password: </label>
     <input type="text" th:field="*{password}" id="password" placeholder="Password">
     <br/>
-    <label for="name">First Name</label>
+    <br/>
+    <label for="name">First Name: </label>
     <input type="text" th:field="*{name}" id="name" placeholder="First Name">
     <br/>
     <br/>
-    <label for="lastName">Second Name</label>
+    <label for="lastName">Second Name: </label>
     <input type="text" th:field="*{secondName}" id="lastName" placeholder="Second Name">
     <br/>
     <br/>
-    <label for="age">Age</label>
+    <label for="age">Age: </label>
     <input type="text" th:field="*{age}" id="age" placeholder="Age">
-
-
-        <br/>
-        <!--                    <ul>-->
+    <br/>
+    <br/>
         <th:block th:each="msg : ${user.getRoles()}">
             <li th:text="${msg.getNoPrefix()}"></li>
         </th:block>
-        <!--                    </ul>-->
         <p>
-            <label>Roles3
+            <label>New Roles:
                 <input type="checkbox" name="roleList"
                        th:each="rol : ${roleList}"
                        th:text="${rol.getNoPrefix()}"
@@ -45,9 +44,12 @@
                 />
             </label>
         </p>
-    <br/>
-    <br/>
+
     <input type="submit" value="Изменить" />
+</form>
+<br/><br/>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Log Out"/>
 </form>
 </body>
 </html>

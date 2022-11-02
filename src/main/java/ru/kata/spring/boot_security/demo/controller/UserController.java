@@ -51,9 +51,9 @@ public class UserController {
 
     @PostMapping("/add")
     public String addUser(User user) {
-        List<String> lsr = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
-        List<Role> liRo = userService.listByRole(lsr);
-        user.setRoles(liRo);
+        List<String> list = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
+        List<Role> roleList = userService.listByRole(list);
+        user.setRoles(roleList);
         System.out.println(user);
         userService.add(user);
         return "result";
@@ -87,9 +87,9 @@ public class UserController {
 
     @PatchMapping("/user-update")
     public String editUser(User user) {
-        List<String> lsr = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
-        List<Role> liRo = userService.listByRole(lsr);
-        user.setRoles(liRo);
+        List<String> list = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
+        List<Role> roleList = userService.listByRole(list);
+        user.setRoles(roleList);
         userService.updateUser(user);
         return "redirect:/users";
     }
