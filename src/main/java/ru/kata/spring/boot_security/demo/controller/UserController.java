@@ -46,15 +46,7 @@ public class UserController {
         return "add";
     }
 
- //   @RequestMapping(value = "/add", method = RequestMethod.POST)
- //   public String greetingSubmit(@ModelAttribute User user, Model model) {
- //       model.addAttribute("user", user);
- //      List<String> lsr = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
- //      List<Role> liRo = userService.listByRole(lsr);
- //       user.setRoles(liRo);
- //       userService.add(user);
- //     return "result";
- //   }
+
 
 
     @PostMapping("/add")
@@ -72,18 +64,40 @@ public class UserController {
 
 
 
-        @GetMapping("/user-update/{id}")
-        public String editForm (@PathVariable("id") Long id, Model model){
+  //      @GetMapping("/user-update/{id}")
+  //      public String editForm (@PathVariable("id") Long id, Model model){
+  //      User user = userService.getById(id);
+  //      model.addAttribute("user", user);
+  //      return "/user-update";
+  //  }
+
+  //      @PatchMapping("/user-update")
+  //      public String editUser (User user){
+  //      userService.updateUser(user);
+  //      return "redirect:/users";
+  //  }
+
+    @GetMapping("user-update/{id}")
+    public String editForm(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
+        model.addAttribute("roleList", userService.listRoles());
         return "/user-update";
     }
 
-        @PatchMapping("/user-update")
-        public String editUser (User user){
+    @PatchMapping("/user-update")
+    public String editUser(User user) {
+        List<String> lsr = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
+        List<Role> liRo = userService.listByRole(lsr);
+        user.setRoles(liRo);
         userService.updateUser(user);
         return "redirect:/users";
     }
+
+
+
+
+
 
         @GetMapping("/user-delete/{id}")
         public String deleteForm (@PathVariable("id") Long id, Model model){
