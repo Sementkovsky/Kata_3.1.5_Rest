@@ -84,6 +84,12 @@ public class UserServiceImpl implements UserService {
         return userDao.findByName(userName);
     }
 
+    public List<Role> listByRole(List<String> name) {
+        return roleDao.listByName(name);
+    }
+
+    public List<Role> listRoles() { return roleDao.listRoles(); }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

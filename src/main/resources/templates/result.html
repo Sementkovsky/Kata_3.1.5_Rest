@@ -6,9 +6,13 @@
 </head>
 <body>
 <h1>Добавлен пользователь со следующими данными:</h1>
+
+<p th:text="'Username: ' + ${user.username}" />
+<p th:text="'Password: ' + ${user.password}" />
 <p th:text="'First Name: ' + ${user.name}" />
 <p th:text="'Second Name: ' + ${user.secondName}" />
 <p th:text="'Age: ' + ${user.age}" />
+<p th:text="'Role: ' + ${user.roles}" />
 
 <a href="/add">Добавить еще одного пользователя </a>
 <a href="/users">Перейти к списку пользователей </a>

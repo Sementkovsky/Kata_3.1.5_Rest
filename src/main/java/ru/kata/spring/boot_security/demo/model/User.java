@@ -149,11 +149,31 @@ public class User implements UserDetails {
 
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", age=" + age +
+                ", roles=" + roles +
+                '}';
+    }
+
     @Override
     public String getPassword() {
         return password;
     }
 }
+
+
+
 
 /*
 
