@@ -12,8 +12,6 @@ import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
-
-
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -101,7 +99,6 @@ public class UserServiceImpl implements UserService {
         return roleDao.listRoles();
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userBas = findByUsername(username);
@@ -109,11 +106,11 @@ public class UserServiceImpl implements UserService {
         if (userBas == null) {
             throw new UsernameNotFoundException(username + " not found");
         }
-        UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), aug(userBas.getRoles()));
+        UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), auth(userBas.getRoles()));
         return userBas;
     }
 
-    private Collection<? extends GrantedAuthority> aug(Collection<Role> roles) {
+    private Collection<? extends GrantedAuthority> auth(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))
                 .collect(Collectors.toList());
     }

@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -110,6 +111,11 @@ public class User implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
     public String getUsername() {
         return username;
     }
@@ -154,10 +160,5 @@ public class User implements UserDetails {
                 ", age=" + age +
                 ", roles=" + roles +
                 '}';
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 }
