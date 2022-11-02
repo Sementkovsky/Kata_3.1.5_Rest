@@ -54,7 +54,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean addRole(Role role) {
         Role userBas = roleDao.findByName(role.getRole());
-        if(userBas != null) {return false;}
+        if (userBas != null) {
+            return false;
+        }
         roleDao.add(role);
         return true;
     }
@@ -62,7 +64,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public boolean add(User user) {
         User userBas = userDao.findByName(user.getUsername());
-        if(userBas != null) {return false;}
+        if (userBas != null) {
+            return false;
+        }
         user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         userDao.add(user);
         return true;
@@ -74,16 +78,11 @@ public class UserServiceImpl implements UserService {
         userDao.removeUser(id);
     }
 
- //   @Override
-  //  @Transactional
- //   public void updateUser(User user) {
- //       userDao.updateUser(user);
-  //  }
     @Override
     @Transactional
     public void updateUser(User user) {
         User userBase = getById(user.getId());
-        if(!userBase.getPassword().equals(user.getPassword())) {
+        if (!userBase.getPassword().equals(user.getPassword())) {
             user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         }
         userDao.updateUser(user);
@@ -98,12 +97,14 @@ public class UserServiceImpl implements UserService {
         return roleDao.listByName(name);
     }
 
-    public List<Role> listRoles() { return roleDao.listRoles(); }
+    public List<Role> listRoles() {
+        return roleDao.listRoles();
+    }
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User userBas = findByUsername(username);
+        User userBas = findByUsername(username);
 
         if (userBas == null) {
             throw new UsernameNotFoundException(username + " not found");
@@ -111,6 +112,7 @@ public class UserServiceImpl implements UserService {
         UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), aug(userBas.getRoles()));
         return userBas;
     }
+
     private Collection<? extends GrantedAuthority> aug(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))
                 .collect(Collectors.toList());

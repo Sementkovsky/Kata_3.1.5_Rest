@@ -31,6 +31,7 @@ public class UserDaoImpl implements UserDao {
         entityManager.persist(user);
         return true;
     }
+
     public User findByName(String username) {
         return entityManager.createQuery("select u FROM User u JOIn fETCH u.roles WHERe u.username = :id", User.class)
                 .setParameter("id", username)

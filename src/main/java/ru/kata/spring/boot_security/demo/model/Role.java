@@ -14,7 +14,8 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
-    public Role() {}
+    public Role() {
+    }
 
     public Role(String role) {
         this.role = role;
@@ -43,7 +44,9 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getRole() { return role; }
+    public String getRole() {
+        return role;
+    }
 
     public void setRole(String role) {
         this.role = role;

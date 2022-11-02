@@ -2,11 +2,11 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>User Edition Form</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h1>Введите новые данные пользователя</h1>
-    <form th:method="PATCH" th:action="@{/user-update}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/user-update}" th:object="${user}">
     <label for="id">ID</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <br/>
@@ -31,21 +31,21 @@
     <input type="text" th:field="*{age}" id="age" placeholder="Age">
     <br/>
     <br/>
-        <th:block th:each="msg : ${user.getRoles()}">
-            <li th:text="${msg.getNoPrefix()}"></li>
-        </th:block>
-        <p>
-            <label>New Roles:
-                <input type="checkbox" name="roleList"
-                       th:each="rol : ${roleList}"
-                       th:text="${rol.getNoPrefix()}"
-                       th:value="${rol.role}"
-                       th:field="*{roles}"
-                />
-            </label>
-        </p>
+    <th:block th:each="msg : ${user.getRoles()}">
+        <li th:text="${msg.getNoPrefix()}"></li>
+    </th:block>
+    <p>
+        <label>New Roles:
+            <input type="checkbox" name="roleList"
+                   th:each="rol : ${roleList}"
+                   th:text="${rol.getNoPrefix()}"
+                   th:value="${rol.role}"
+                   th:field="*{roles}"
+            />
+        </label>
+    </p>
 
-    <input type="submit" value="Изменить" />
+    <input type="submit" value="Изменить"/>
 </form>
 <br/><br/>
 <form th:action="@{/logout}" method="post">

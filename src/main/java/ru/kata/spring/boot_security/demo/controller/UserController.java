@@ -34,48 +34,21 @@ public class UserController {
         return "users";
     }
 
- //  @RequestMapping(value = "/add", method = RequestMethod.GET)
- //   public String greetingForm(Model model) {
- //       model.addAttribute("user", new User());
- //       return "add";
- //   }
-
     @GetMapping("/add")
     public String createUserForm(User user, Model model) {
         model.addAttribute("roleList", userService.listRoles());
         return "add";
     }
 
-
-
-
     @PostMapping("/add")
     public String addUser(User user) {
-        List<String> list = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
+        List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
         List<Role> roleList = userService.listByRole(list);
         user.setRoles(roleList);
         System.out.println(user);
         userService.add(user);
         return "result";
     }
-
-
-
-
-
-
-  //      @GetMapping("/user-update/{id}")
-  //      public String editForm (@PathVariable("id") Long id, Model model){
-  //      User user = userService.getById(id);
-  //      model.addAttribute("user", user);
-  //      return "/user-update";
-  //  }
-
-  //      @PatchMapping("/user-update")
-  //      public String editUser (User user){
-  //      userService.updateUser(user);
-  //      return "redirect:/users";
-  //  }
 
     @GetMapping("user-update/{id}")
     public String editForm(@PathVariable("id") Long id, Model model) {
@@ -87,30 +60,23 @@ public class UserController {
 
     @PatchMapping("/user-update")
     public String editUser(User user) {
-        List<String> list = user.getRoles().stream().map(r->r.getRole()).collect(Collectors.toList());
+        List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
         List<Role> roleList = userService.listByRole(list);
         user.setRoles(roleList);
         userService.updateUser(user);
         return "redirect:/users";
     }
 
-
-
-
-
-
-        @GetMapping("/user-delete/{id}")
-        public String deleteForm (@PathVariable("id") Long id, Model model){
+    @GetMapping("/user-delete/{id}")
+    public String deleteForm(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
         return "/user-delete";
     }
 
-        @DeleteMapping("/user-delete")
-        public String deleteUser (Long id){
+    @DeleteMapping("/user-delete")
+    public String deleteUser(Long id) {
         userService.removeUser(id);
         return "redirect:/users";
     }
-
-
-    }
+}
