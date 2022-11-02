@@ -20,7 +20,7 @@ public class HelloController {
     public String printWelcome(ModelMap model, Principal principal) {
         User user = userDao.findByName(principal.getName());
         model.addAttribute("messages", user);
-        return "user-no-admin";
+        return "user";
     }
 }
 
