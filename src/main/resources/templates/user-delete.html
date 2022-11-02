@@ -10,6 +10,8 @@
     <label for="id">ID</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <br/>
+    <label for="name">Username</label>
+    <input type="text" th:field="*{username}" id="username" placeholder="First Name">
     <br/>
     <label for="name">First Name</label>
     <input type="text" th:field="*{name}" id="name" placeholder="First Name">
@@ -25,5 +27,8 @@
     <br/>
     <input type="submit" value="Удалить" />
 </form>
+<br/><br/>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
 </body>
 </html>
