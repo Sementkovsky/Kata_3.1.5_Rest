@@ -45,7 +45,6 @@ public class UserController {
         List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
         List<Role> roleList = userService.listByRole(list);
         user.setRoles(roleList);
-        System.out.println(user);
         userService.add(user);
         return "result";
     }
