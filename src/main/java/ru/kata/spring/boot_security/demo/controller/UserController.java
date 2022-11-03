@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -40,9 +37,6 @@ public class UserController {
 
     @PostMapping("/add")
     public String addUser(User user) {
-        List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
-        List<Role> roleList = userService.listByRole(list);
-        user.setRoles(roleList);
         userService.add(user);
         return "result";
     }
@@ -57,9 +51,6 @@ public class UserController {
 
     @PatchMapping("/user-update")
     public String editUser(User user) {
-        List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
-        List<Role> roleList = userService.listByRole(list);
-        user.setRoles(roleList);
         userService.updateUser(user);
         return "redirect:/admin";
     }
