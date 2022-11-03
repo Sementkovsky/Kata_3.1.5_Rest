@@ -13,8 +13,11 @@ import java.util.List;
 @Component
 public class DataInitializer {
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
+
+    public DataInitializer(UserServiceImpl userService) {
+        this.userService = userService;
+    }
 
     @PostConstruct
     public void init() {
