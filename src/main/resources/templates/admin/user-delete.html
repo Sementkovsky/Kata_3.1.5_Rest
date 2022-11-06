@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Подтвердите удаление пользователя</h1>
-    <form th:method="DELETE" th:action="@{/user-delete}" th:object="${user}">
+    <form th:method="DELETE" th:action="@{/admin/user-delete}" th:object="${user}">
     <label for="id">ID</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <br/>

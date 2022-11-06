@@ -9,6 +9,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -20,25 +21,25 @@ public class AdminController {
 
     @GetMapping(value = "")
     public String startPage() {
-        return "index";
+        return "admin/home";
     }
 
-    @GetMapping(value = "/admin")
+    @GetMapping(value = "/all")
     public String showUsers(Model model) {
         model.addAttribute("listUsers", userService.listUsers());
-        return "admin";
+        return "admin/all";
     }
 
     @GetMapping("/add")
     public String createUserForm(User user, Model model) {
         model.addAttribute("roleList", userService.listRoles());
-        return "add";
+        return "admin/add";
     }
 
     @PostMapping("/add")
     public String addUser(User user) {
         userService.add(user);
-        return "result";
+        return "admin/result";
     }
 
     @GetMapping("user-update/{id}")
@@ -46,25 +47,25 @@ public class AdminController {
         User user = userService.getById(id);
         model.addAttribute("user", user);
         model.addAttribute("roleList", userService.listRoles());
-        return "/user-update";
+        return "admin/user-update";
     }
 
     @PatchMapping("/user-update")
     public String editUser(User user) {
         userService.updateUser(user);
-        return "redirect:/admin";
+        return "redirect:/admin/all";
     }
 
     @GetMapping("/user-delete/{id}")
     public String deleteForm(@PathVariable("id") Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
-        return "/user-delete";
+        return "admin/user-delete";
     }
 
     @DeleteMapping("/user-delete")
     public String deleteUser(Long id) {
         userService.removeUser(id);
-        return "redirect:/admin";
+        return "redirect:/admin/all";
     }
 }

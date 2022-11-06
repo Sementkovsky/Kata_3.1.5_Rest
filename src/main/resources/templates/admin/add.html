@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Введите данные пользователя</h1>
-<form action="#" th:action="@{/add}" th:object="${user}" method="post">
+<form action="#" th:action="@{/admin/add}" th:object="${user}" method="post">
 
     <p>Username: <input type="text" th:field="*{username}" /></p>
     <p>Password: <input type="text" th:field="*{password}" /></p>

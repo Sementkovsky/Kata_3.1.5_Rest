@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>List of users</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
@@ -10,8 +10,8 @@
 
 <div>
     <nobr>
-        <a th:href="@{/add}">Добавить пользователя</a> |
-        <a th:href="@{/}">Назад на главную</a>
+        <a href="/admin/add">Добавить пользователя</a>
+        <a href="/">Назад на главную</a>
     </nobr>
 </div>
 <br/><br/>
@@ -28,7 +28,7 @@
             <th>Изменить</th>
             <th>Удалить</th>
         </tr>
-        <tr th:each ="user : ${listUsers}">
+        <tr th:each="user : ${listUsers}">
             <td th:utext="${user.getId()}">...</td>
             <td th:utext="${user.getUsername()}">...</td>
             <td th:text="${user.password}"></td>
@@ -40,8 +40,8 @@
                     <li th:text="${msg.getNoPrefix()}"></li>
                 </th:block>
             </td>
-            <td><a th:href="@{/user-update/{id}(id=${user.getId})}">Изменить</a></td>
-            <td><a th:href="@{/user-delete/{id}(id=${user.getId})}">Удалить</a></td>
+            <td><a th:href="@{/admin/user-update/{id}(id=${user.getId})}">Изменить</a></td>
+            <td><a th:href="@{/admin/user-delete/{id}(id=${user.getId})}">Удалить</a></td>
         </tr>
     </table>
     <br/><br/>
