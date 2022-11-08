@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
+
+import java.security.Principal;
+import java.util.List;
 
 
 @Controller
@@ -19,16 +23,29 @@ public class AdminController {
         this.userService = userService;
     }
 
+
+    @GetMapping("/all")
+    public ModelAndView admin(Principal user) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin/Admin_cop");
+
+        List<User> users = userService.listUsers();
+        modelAndView.addObject("users", users);
+
+        modelAndView.addObject("admin", userService.findByUsername(user.getName()));
+        return modelAndView;
+    }
+
     @GetMapping(value = "")
     public String startPage() {
         return "admin/home";
     }
 
-    @GetMapping(value = "/all")
-    public String showUsers(Model model) {
-        model.addAttribute("listUsers", userService.listUsers());
-        return "admin/all";
-    }
+ //   @GetMapping(value = "/all")
+ //   public String showUsers(Model model) {
+ //       model.addAttribute("listUsers", userService.listUsers());
+ //       return "admin/Admin_cop";
+ //   }
 
     @GetMapping("/add")
     public String createUserForm(User user, Model model) {
