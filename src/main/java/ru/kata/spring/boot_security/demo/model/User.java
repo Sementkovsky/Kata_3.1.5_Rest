@@ -27,8 +27,12 @@ public class User implements UserDetails {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "username")
-    private String username;
+    public String getEmail() {
+        return email;
+    }
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
@@ -57,8 +61,8 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public User(String username, String password, String name, String secondName, int age, List<Role> roles) {
-        this.username = username;
+    public User(String email, String password, String name, String secondName, int age, List<Role> roles) {
+        this.email = email;
         this.password = password;
         this.name = name;
         this.secondName = secondName;
@@ -66,9 +70,9 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(Long id, String username, String password, String name, String secondName, int age, List<Role> roles) {
+    public User(Long id, String email, String password, String name, String secondName, int age, List<Role> roles) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
         this.secondName = secondName;
@@ -127,7 +131,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
@@ -155,15 +159,15 @@ public class User implements UserDetails {
         return getRoles();
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", username='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", secondName='" + secondName + '\'' +

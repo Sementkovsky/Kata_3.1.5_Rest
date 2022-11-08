@@ -31,11 +31,13 @@ public class UserDaoImpl implements UserDao {
         return true;
     }
 
-    public User findByName(String username) {
-        return entityManager.createQuery("select u FROM User u JOIn fETCH u.roles WHERe u.username = :id", User.class)
-                .setParameter("id", username)
+    public User findByEmail(String email) {
+        return entityManager.createQuery("select u FROM User u JOIn fETCH u.roles WHERe u.email = :id", User.class)
+                .setParameter("id", email)
                 .getResultList().stream().findAny().orElse(null);
     }
+
+
 
     @Override
     public void saveUser(User user) {

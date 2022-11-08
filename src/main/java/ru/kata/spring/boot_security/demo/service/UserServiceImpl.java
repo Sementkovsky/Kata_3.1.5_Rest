@@ -12,6 +12,7 @@ import ru.kata.spring.boot_security.demo.dao.RoleDao;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -61,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public boolean add(User user) {
-        User userBas = userDao.findByName(user.getUsername());
+        User userBas = userDao.findByEmail(user.getUsername());
         if (userBas != null) {
             return false;
         }
@@ -92,8 +93,8 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
-    public User findByUsername(String userName) {
-        return userDao.findByName(userName);
+    public User findByEmail(String userName) {
+        return userDao.findByEmail(userName);
     }
 
     public List<Role> listByRole(List<String> name) {
@@ -104,16 +105,28 @@ public class UserServiceImpl implements UserService {
         return roleDao.listRoles();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userBas = findByUsername(username);
+    //   @Override
+    //   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    //       User userBas = findByUsername(username);
 
-        if (userBas == null) {
-            throw new UsernameNotFoundException(username + " not found");
+    //       if (userBas == null) {
+    //           throw new UsernameNotFoundException(username + " not found");
+    //       }
+    //       UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), auth(userBas.getRoles()));
+    //       return userBas;
+    //   }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userDao.findByEmail(email);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Not found!");
         }
-        UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), auth(userBas.getRoles()));
-        return userBas;
+
+        return user;
     }
+
 
     private Collection<? extends GrantedAuthority> auth(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))

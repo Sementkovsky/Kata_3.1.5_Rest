@@ -32,7 +32,7 @@ public class AdminController {
         List<User> users = userService.listUsers();
         modelAndView.addObject("users", users);
 
-        modelAndView.addObject("admin", userService.findByUsername(user.getName()));
+        modelAndView.addObject("admin", userService.findByEmail(user.getName()));
         return modelAndView;
     }
 
