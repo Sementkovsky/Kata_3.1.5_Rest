@@ -1,27 +1,102 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Spring Security Example</title>
-</head>
-<body>
-<h1>Добро пожаловать на страницу пользователя!</h1>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div>
-    <th:block>
-        <h2 th:text="'Ваш Username: ' + ${messages.getUsername()}"></h2>
-        <h2 th:text="'Ваш First name: ' + ${messages.getName()}"></h2>
-        <h2 th:text="'Ваш Second name: ' + ${messages.getSecondName()}"></h2>
-        <h2 th:text="'Ваш Age: ' + ${messages.getAge()}"></h2>
-        <th:block
-                th:each="msg : ${messages.getRoles()}">
-            <h2 th:text="${msg}"></h2>
-        </th:block>
-    </th:block>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<body>
+<nav th:object="${user}" class="navbar navbar-dark bg-dark">
+  <h5>
+    <a class="navbar-text text-white font-bold" th:text="${user.email}">Email</a>
+    <a class="navbar-text text-white" th:text=" ' with roles : ' + ${user.roles}">Roles</a>
+  </h5>
+
+  <form th:action="@{/logout}" method="post">
+    <button class="btn btn-link btn-xs">
+      <p class="text-muted">Logout</p>
+    </button>
+  </form>
+</nav>
+
+<br>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-2">
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="/user">User</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-10">
+      <h3 class="card-title">User information-page</h3>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item active" role="presentation">
+          <a class="nav-link" data-toggle="tab" href="#user" role="tab">About user</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="user" role="tabpanel">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Age</th>
+              <th>Email</th>
+              <th>Roles</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:object="${user}"  >
+              <td th:text="${user.id}">ID</td>
+              <td th:text="${user.name}">First Name</td>
+              <td th:text="${user.secondName}">Last Name</td>
+              <td th:text="${user.age}">Age</td>
+              <td th:text="${user.email}">Email</td>
+              <td th:text="${user.roles}">Roles</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Log Out"/>
-</form>
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{/main.js}" src="../static/main.js"></script>
+-->
+
+<!--Option 2: jQuery, Popper.js, and Bootstrap JS-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
