@@ -24,7 +24,7 @@ public class AdminController {
     }
 
 
-    @GetMapping("/all")
+    @GetMapping("")
     public ModelAndView admin(Principal user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("admin/Admin_cop");
@@ -36,10 +36,10 @@ public class AdminController {
         return modelAndView;
     }
 
-    @GetMapping(value = "")
-    public String startPage() {
-        return "admin/home";
-    }
+ //   @GetMapping(value = "")
+ //   public String startPage() {
+ //       return "admin/home";
+ //   }
 
  //   @GetMapping(value = "/all")
  //   public String showUsers(Model model) {

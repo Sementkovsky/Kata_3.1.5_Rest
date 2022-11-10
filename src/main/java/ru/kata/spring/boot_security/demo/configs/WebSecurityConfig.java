@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-           
+
                 .permitAll()
                 .successHandler(successUserHandler)
                 .and()
