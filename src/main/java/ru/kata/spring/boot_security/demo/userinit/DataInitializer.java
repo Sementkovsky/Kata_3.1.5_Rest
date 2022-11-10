@@ -30,6 +30,7 @@ public class DataInitializer {
         List<Role> roleUser = new ArrayList<>();
 
         roleAdmin.add(role1);
+        roleAdmin.add(role2);
         roleUser.add(role2);
 
         User user1 = new User("admin@mail.ru", "admin", "Джон", "Леннон", 40, roleAdmin);
