@@ -35,9 +35,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/index").permitAll()
                 .anyRequest().authenticated()
                 .and()
+
                 .formLogin()
-           //     .loginPage("/login")
+                .loginPage("/login")
+                .loginProcessingUrl("/process_login")
                 .usernameParameter("email")
+
+
+
+           
                 .permitAll()
                 .successHandler(successUserHandler)
                 .and()
