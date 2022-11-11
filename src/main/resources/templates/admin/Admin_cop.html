@@ -17,8 +17,18 @@
   <h5>
     <!--<a class="navbar-text text-white font-bold" href="/user"=>-->
     <a class="navbar-text text-white font-bold" th:text="${admin.email}">Email</a>
-    <a class="navbar-text text-white" th:text=" ' with roles : ' + ${admin.roles}">Roles</a>
-    </a>
+   <!-- <a class="navbar-text text-white" th:text=" ' with roles : ' + ${admin.roles}">Roles</a> -->
+
+    <th:block th:object="${admin}">
+      <a class="text-white font-bold"  text="with roles :">with roles:</a>
+
+      <a class="text-white font-bold"  th:each="item : *{roles}" th:text="${item.getNoPrefix()} + '  '">Item description here...</a>
+    </th:block>
+
+
+
+
+
   </h5>
 
   <form th:action="@{/logout}" method="post">
@@ -79,7 +89,11 @@
               <td th:text="${user.secondName}">Last Name</td>
               <td th:text="${user.age}">Age</td>
               <td th:text="${user.email}">Email</td>
-              <td th:text="${user.roles}">Roles</td>
+              <td>
+                <th:block th:object="${user}">
+                  <a th:each="item : *{roles}" th:text="${item.getNoPrefix()} + ' '">Item description here...</a>
+                </th:block>
+              </td>
               <td>
                 <button type="button" class="btn btn-info" data-toggle="modal"
                         th:data-target="'#edit' + ${user.id}">
