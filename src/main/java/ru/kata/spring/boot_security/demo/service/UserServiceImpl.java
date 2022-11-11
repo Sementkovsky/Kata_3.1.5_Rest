@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
+        System.out.println(user);
         List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
         List<Role> roleList = listByRole(list);
         user.setRoles(roleList);
