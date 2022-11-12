@@ -56,7 +56,7 @@ public class AdminController {
     @PostMapping("/add")
     public String addUser(User user) {
         userService.add(user);
-        return "admin/result";
+        return "redirect:/admin";
     }
 
     @GetMapping("user-update/{id}")
