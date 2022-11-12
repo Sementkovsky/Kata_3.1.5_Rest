@@ -36,16 +36,11 @@ public class AdminController {
         return modelAndView;
     }
 
- //   @GetMapping(value = "")
- //   public String startPage() {
- //       return "admin/home";
- //   }
-
- //   @GetMapping(value = "/all")
- //   public String showUsers(Model model) {
- //       model.addAttribute("listUsers", userService.listUsers());
- //       return "admin/Admin_cop";
- //   }
+    //   @GetMapping(value = "/all")
+    //   public String showUsers(Model model) {
+    //       model.addAttribute("listUsers", userService.listUsers());
+    //       return "admin/Admin_cop";
+    //   }
 
     @GetMapping("/add")
     public String createUserForm(User user, Model model) {
@@ -73,16 +68,11 @@ public class AdminController {
         return "redirect:/admin/all";
     }
 
-    @GetMapping("/user-delete/{id}")
-    public String deleteForm(@PathVariable("id") Long id, Model model) {
-        User user = userService.getById(id);
-        model.addAttribute("user", user);
-        return "admin/user-delete";
-    }
-
-    @DeleteMapping("/user-delete")
-    public String deleteUser(Long id) {
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id, Model model) {
         userService.removeUser(id);
-        return "redirect:/admin/all";
+        return "redirect:/admin";
     }
 }
+
+

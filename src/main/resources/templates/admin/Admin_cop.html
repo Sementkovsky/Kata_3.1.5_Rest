@@ -215,9 +215,10 @@
                       <div class="modal-body">
 
                         <form class="text-center"
-                              th:action="@{/delete/{id}(id=${user.id})}"
-                              th:object="${user}"
-                              method="post">
+                              th:method="delete"
+                              th:action="@{/admin/delete/{id}(id=${user.id})}"
+                              th:object="${user}">
+
 
                           <div class="form-group">
                             <label for="idde" class="col-form-label">
