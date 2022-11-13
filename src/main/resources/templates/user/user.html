@@ -14,7 +14,11 @@
 <nav th:object="${user}" class="navbar navbar-dark bg-dark">
   <h5>
     <a class="navbar-text text-white font-bold" th:text="${user.email}">Email</a>
-    <a class="navbar-text text-white" th:text=" ' with roles : ' + ${user.roles}">Roles</a>
+    <!-- <a class="navbar-text text-white" th:text=" ' with roles : ' + ${admin.roles}">Roles</a> -->
+    <th:block th:object="${user}">
+      <a class="text-white font-bold"  text="with roles :">with roles:</a>
+      <a class="text-white font-bold"  th:each="item : *{roles}" th:text="${item.getNoPrefix()} + '  '">Item description here...</a>
+    </th:block>
   </h5>
 
   <form th:action="@{/logout}" method="post">
@@ -65,7 +69,11 @@
               <td th:text="${user.secondName}">Last Name</td>
               <td th:text="${user.age}">Age</td>
               <td th:text="${user.email}">Email</td>
-              <td th:text="${user.roles}">Roles</td>
+              <td>
+                <th:block th:object="${user}">
+                  <a th:each="item : *{roles}" th:text="${item.getNoPrefix()} + ' '">Item description here...</a>
+                </th:block>
+              </td>
             </tr>
             </tbody>
           </table>
