@@ -26,7 +26,7 @@ public class AdminController {
     @GetMapping("")
     public ModelAndView admin(Principal user) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/Admin_cop");
+        modelAndView.setViewName("admin/admin");
         List<User> users = userService.listUsers();
         modelAndView.addObject("users", users);
         modelAndView.addObject("admin", userService.findByEmail(user.getName()));
