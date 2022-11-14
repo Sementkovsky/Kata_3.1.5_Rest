@@ -23,7 +23,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-
     @GetMapping("")
     public ModelAndView admin(Principal user) {
         ModelAndView modelAndView = new ModelAndView();
@@ -34,34 +33,14 @@ public class AdminController {
         return modelAndView;
     }
 
-    //   @GetMapping(value = "/all")
-    //   public String showUsers(Model model) {
-    //       model.addAttribute("listUsers", userService.listUsers());
-    //       return "admin/Admin_cop";
-
-    @GetMapping("/add")
-    public String createUserForm(User user, Model model) {
-        model.addAttribute("roleList", userService.listRoles());
-        return "admin/add";
-    }
-
     @PostMapping("/add")
     public String addUser(User user) {
         userService.add(user);
         return "redirect:/admin";
     }
 
-    @GetMapping("user-update/{id}")
-    public String editForm(@PathVariable("id") Long id, Model model) {
-        User user = userService.getById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("roleList", userService.listRoles());
-        return "admin/user-update";
-    }
-
     @PatchMapping("/user-update/{id}")
     public String editUser(@PathVariable("id") Long id, User user) {
-        System.out.println("To update: " + user);
         user.setId(id);
         userService.updateUser(user);
         return "redirect:/admin";
