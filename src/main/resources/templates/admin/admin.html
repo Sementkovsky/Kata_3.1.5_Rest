@@ -135,7 +135,7 @@
                             </label>
                             <input class="form-control"
                                    type="text"
-                                   id="lastname"
+                                   id="lastName"
                                    name="secondName"
                                    th:value="${user.secondName}"/>
                           </div>
@@ -315,14 +315,14 @@
               <form action="#" th:action="@{admin/add}" th:object="${admin}" method="post">
 
                 <div class="form-group">
-                  <label for="username" class="col-form-label">
+                  <label for="name" class="col-form-label">
                     <p class="font-weight-bold">First name</p>
                   </label>
                   <input type="text" class="form-control" id="name" name="name"/>
                 </div>
 
                 <div class="form-group">
-                  <label for="lastName" class="col-form-label">
+                  <label for="secondName" class="col-form-label">
                     <p class="font-weight-bold">Last name</p>
                   </label>
                   <input type="text" class="form-control" id="secondName" name="secondName" value="" />
