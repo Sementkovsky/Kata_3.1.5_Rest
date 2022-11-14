@@ -106,17 +106,6 @@ public class UserServiceImpl implements UserService {
         return roleDao.listRoles();
     }
 
-    //   @Override
-    //   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    //       User userBas = findByUsername(username);
-
-    //       if (userBas == null) {
-    //           throw new UsernameNotFoundException(username + " not found");
-    //       }
-    //       UserDetails user = new org.springframework.security.core.userdetails.User(userBas.getUsername(), userBas.getPassword(), auth(userBas.getRoles()));
-    //       return userBas;
-    //   }
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userDao.findByEmail(email);
@@ -124,10 +113,8 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("Not found!");
         }
-
         return user;
     }
-
 
     private Collection<? extends GrantedAuthority> auth(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))

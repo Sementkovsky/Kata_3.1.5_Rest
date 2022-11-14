@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.dao;
 
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.Role;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -32,7 +33,7 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     public List<Role> listByName(List<String> name) {
-        return  entityManager.createQuery("select u FROM Role u WHERe u.role in (:id)", Role.class)
+        return entityManager.createQuery("select u FROM Role u WHERe u.role in (:id)", Role.class)
                 .setParameter("id", name)
                 .getResultList();
     }
