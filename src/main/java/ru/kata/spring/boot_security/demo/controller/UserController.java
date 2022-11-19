@@ -29,7 +29,7 @@ public class UserController {
         System.out.println("I'm here");
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
      User user = (User) auth.getPrincipal();
-        return new ResponseEntity<>(userDao.getById(2L), HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 
