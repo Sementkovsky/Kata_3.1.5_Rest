@@ -13,7 +13,7 @@
 <body>
 <nav th:object="${user}" class="navbar navbar-dark bg-dark">
   <h5>
-    <a class="navbar-text text-white font-bold" th:text="${user.email}">Email</a>
+    <a class="navbar-text text-white font-bold" id="headerUsername"></a>
     <!-- <a class="navbar-text text-white" th:text=" ' with roles : ' + ${admin.roles}">Roles</a> -->
     <th:block th:object="${user}">
       <a class="text-white font-bold">with roles:</a>

@@ -6,7 +6,7 @@ async function thisUser() {
     fetch("http://localhost:8080/api/user")
         .then(res => res.json())
         .then(data => {
-            $('#headerUsername').append(data.username);
+            $('#headerUsername').append(data.email);
             let roleList = data.roles.map(role => role.role.substring(5).concat(" ")).toString().replaceAll(",", "");
             $('#headerRoles').append(roleList);
 
