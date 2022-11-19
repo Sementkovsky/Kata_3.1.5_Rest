@@ -12,6 +12,7 @@ async function allUsers() {
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.name}</td>   
+                            <td>${user.secondName}</td> 
                             <td>${user.age}</td>                      
                             <td>${user.email}</td>
                             <td>${user.roles.map(role => role.role.substring(5).concat(" ")).toString().replaceAll(",", "")}</td>
