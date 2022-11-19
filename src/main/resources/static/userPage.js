@@ -17,7 +17,7 @@ async function thisUser() {
                  <td>${data.secondName}</td>
                 <td>${data.age}</td>
                 <td>${data.email}</td>
-                <td>${data.roles}</td>)`;
+                <td>${roleList}</td>)`;
             $('#userPanelBody').append(user);
         })
 }
