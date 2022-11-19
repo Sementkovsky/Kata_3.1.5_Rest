@@ -23,9 +23,17 @@ public class MyRestController {
         this.userService = userService;
     }
 
-    @GetMapping("")
-    public List<User> getAll() {
-        List<User> a = userService.listUsers();
-        return a;
+//    @GetMapping("")
+//    public List<User> getAll() {
+// List<User> a = userService.listUsers();
+//        return a;
+    //  }
+
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAll() {
+        return new ResponseEntity<>(userService.listUsers(), HttpStatus.OK);
     }
+
+
 }
