@@ -2,6 +2,7 @@ $(async function() {
     await newUser();
 });
 async function newUser() {
+    /*
     await fetch("http://localhost:8080/api/roles")
         .then(res => res.json())
         .then(roleList => {
@@ -11,23 +12,33 @@ async function newUser() {
                 el.value = role.id;
                 $('#newUserRoles')[0].appendChild(el);
             })
-        })
+        }
+        )
+
+     */
 
     const form = document.forms["formNewUser"];
 
     form.addEventListener('submit', addNewUser)
 
     function addNewUser(e) {
+
+
+        /*
         e.preventDefault();
         let newUserRoles = [];
         if (form.roleList !== undefined) {
-            for (let i = 0; i < form.roleList.options.length; i++) {
-                if (form.roleList.options[i].selected) newUserRoles.push({
-                    id: form.roleList.options[i].value,
+           for (let i = 0; i < form.roleList.options.length; i++) {
+               if (form.roleList.options[i].selected) newUserRoles.push({
+                   id: form.roleList.options[i].value,
                     role: form.roleList.options[i].role
-                })
+               }
+                )
             }
         }
+        */
+
+
         fetch("http://localhost:8080/api/new", {
             method: 'POST',
             headers: {

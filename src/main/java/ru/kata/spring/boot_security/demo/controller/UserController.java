@@ -26,7 +26,6 @@ public class UserController {
     @GetMapping("/api/user")
     @ResponseBody
     public ResponseEntity<User> showUser() {
-        System.out.println("I'm here");
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
      User user = (User) auth.getPrincipal();
         return new ResponseEntity<>(user, HttpStatus.OK);
