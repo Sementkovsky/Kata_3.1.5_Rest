@@ -1,6 +1,7 @@
-$(async function() {
+$(async function () {
     await newUser();
 });
+
 async function newUser() {
     /*
     await fetch("http://localhost:8080/api/roles")
@@ -16,6 +17,8 @@ async function newUser() {
         )
 
      */
+    console.log("Im from JS!")
+
 
     const form = document.forms["formNewUser"];
 
