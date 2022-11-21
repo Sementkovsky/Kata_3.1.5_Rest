@@ -14,11 +14,9 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
   <h5>
-    <a class="navbar-text text-white font-bold" th:text="${admin.email}">Email</a>
-    <th:block th:object="${admin}">
-      <a class="text-white font-bold" >with roles:</a>
-      <a class="text-white font-bold"  th:each="item : *{roles}" th:text="${item.getNoPrefix()} + '  '">Item description here...</a>
-    </th:block>
+    <a class="navbar-text text-white font-bold" id="headerUsername"></a>
+    <a class="text-white font-bold">with roles:</a>
+    <a class="text-white font-bold" id="headerRoles"></a>
   </h5>
 
   <form th:action="@{/logout}" method="post">
@@ -51,7 +49,7 @@
           <a class="nav-link" data-toggle="tab" href="#users" role="tab">Users table</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" data-toggle="tab" href="#new" role="tab">New User</a>
+          <a class="nav-link" data-toggle="tab" href="#newUser" role="tab">New Userchik</a>
         </li>
       </ul>
 
@@ -337,6 +335,103 @@
           </table>
         </div>
 
+
+
+
+
+        <div class="tab-pane fade" id="newUser">
+          <div class="form-group">
+            <div class="control-group required">
+              <div class="card">
+                <h5 class="card-header">Add new user</h5>
+                <div class="card-body text-center">
+                  <div class="form justify-content-center mx-auto col-5">
+
+                    <form id="formNewUser" name="formNewUser">
+
+                      <p>
+                        <label class="container-fluid"
+                               for="newUserName"><strong>First Name</strong>
+                          <input class="form-control" type="text"
+                                 name="name"
+                                 id="newUserName"/>
+                        </label>
+                      </p>
+
+                      <p>
+                        <label class="container-fluid"
+                               for="newUserName"><strong>Last Name</strong>
+                          <input class="form-control" type="text"
+                                 name="secondName"
+                                 id="newUserLastName"/>
+                        </label>
+                      </p>
+
+                      <p>
+                        <label class="container-fluid"
+                               for="newUserAge"><strong>Age</strong>
+                          <input class="form-control" type="number" name="age"
+                                 id="newUserAge"/>
+                        </label>
+                      </p>
+
+                      <p>
+                        <label class="container-fluid"
+                               for="newUserEmail"><strong>Email</strong>
+                          <input class="form-control" type="email"
+                                 name="email"
+                                 id="newUserEmail"/>
+                        </label>
+                      </p>
+                      <p>
+
+                        <label class="container-fluid"
+                               for="newUserPassword"><strong>Password</strong>
+                          <input class="form-control" type="password"
+                                 name="password"
+                                 id="newUserPassword"/>
+                        </label>
+                      </p>
+
+                      <label class="container-fluid"
+                             for="newUserRoles"><strong>Role</strong>
+                        <select id="newUserRoles" class="form-control"
+                                name="roleList"
+                                multiple size="2">
+
+                        </select>
+                      </label>
+                      <button type="submit" id="newUserButton"
+                              class="btn btn-success">Add
+                        new user
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="tab-pane fade" id="new" role="tabpanel">
           <h5 class="card-title">Add new user</h5>
           <div class="container" align="center">
@@ -413,5 +508,6 @@
 <!-- <script th:src="@{/main.js}"></script> -->
 
 <script type="text/javascript" src="usersList.js"> </script>
+<script type="text/javascript" src="userPage.js"> </script>
 </body>
 </html>
