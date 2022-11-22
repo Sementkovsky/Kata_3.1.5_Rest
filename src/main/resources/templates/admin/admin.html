@@ -30,7 +30,6 @@
 
 <div class="container-fluid">
   <div class="row">
-
     <div class="col-md-2">
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
@@ -57,7 +56,6 @@
       <div class="tab-content">
         <div class="tab-pane fade show active" id="allUsers" role="tabpanel">
             <h5 class="card-header">All users</h5>
-
               <table class="table table-hover">
                 <thead>
                 <tr>
@@ -74,25 +72,7 @@
                 <tbody id="tbodyAllUserTable">
                 </tbody>
               </table>
-
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -149,15 +129,28 @@
                                  id="newUserPassword"/>
                         </label>
                       </p>
-
-                      <label class="container-fluid"
-                             for="newUserRoles"><strong>Role</strong>
-                        <select id="newUserRoles" class="form-control"
-                                name="roleList"
-                                multiple size="2">
-
+<!--
+                      <label class="container-fluid" for="newUserRoles"><strong>Role</strong>
+                        <select multiple class="form-control" id="newUserRoles" name="roles" >
+                          <option value="ROLE_ADMIN">ADMIN</option>
+                          <option value="ROLE_USER">USER</option>
                         </select>
                       </label>
+-->
+                      <div class="form-group text-center">
+                        <label class="font-weight-bold">Role </label>
+                        <label for="AddNewUserRoles"></label><select class="form-control" name="rolesList" id="AddNewUserRoles"
+                                                                     size="2"
+                                                                     multiple>
+                        <option value="ROLE_ADMIN">ADMIN</option>
+                        <option value="ROLE_USER">USER</option>
+                      </select>
+                      </div>
+
+
+
+
+
                       <button type="submit" id="newUserButton"
                               class="btn btn-success">Add
                         new user
@@ -169,10 +162,9 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
-      </div>
+  </div>
 </div>
 
 
@@ -192,5 +184,6 @@
 
 <script type="text/javascript" src="usersList.js"> </script>
 <script type="text/javascript" src="userPage.js"> </script>
+<script type="text/javascript" src="addUser.js"> </script>
 </body>
 </html>

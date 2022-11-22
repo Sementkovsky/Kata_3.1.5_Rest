@@ -38,8 +38,9 @@ public class MyRestController {
     public ResponseEntity<User> create(@RequestBody User user) {
         System.out.println("I'm here now");
 
-        //  userService.save(userService.convertToUser(userDTO));
+
         System.out.println(user);
+        userService.add(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 

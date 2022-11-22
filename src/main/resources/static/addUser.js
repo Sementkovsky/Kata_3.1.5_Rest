@@ -15,32 +15,25 @@ async function newUser() {
             })
         }
         )
-
      */
-    console.log("Im from JS!")
-
 
     const form = document.forms["formNewUser"];
 
     form.addEventListener('submit', addNewUser)
 
     function addNewUser(e) {
-
-
-        /*
         e.preventDefault();
-        let newUserRoles = [];
-        if (form.roleList !== undefined) {
-           for (let i = 0; i < form.roleList.options.length; i++) {
-               if (form.roleList.options[i].selected) newUserRoles.push({
-                   id: form.roleList.options[i].value,
-                    role: form.roleList.options[i].role
-               }
-                )
-            }
-        }
-        */
 
+        const selected_options = document.querySelector('#AddNewUserRoles').selectedOptions;
+
+        let rolesNamesArray = new Array(selected_options.length);
+        for (let i = 0; i < selected_options.length; i++) {
+            rolesNamesArray[i] = selected_options[i].value;
+        }
+  //      let rolesNames = rolesNamesArray;
+  //      console.log(rolesNamesArray);
+  //      console.log(rolesNames);
+  //      alert("Stop here to check rolesNames");
 
         fetch("http://localhost:8080/api/new", {
             method: 'POST',
@@ -53,13 +46,13 @@ async function newUser() {
                 age: form.age.value,
                 email: form.email.value,
                 password: form.password.value,
-                roleList: newUserRoles
+                roles: rolesNamesArray
             })
         }).then(() => {
             form.reset();
             allUsers();
-            $('#allUsersTable').click();
+            $('#allUsers').click();
         })
     }
-
 }
+
