@@ -3,19 +3,6 @@ $(async function () {
 });
 
 async function newUser() {
-    /*
-    await fetch("http://localhost:8080/api/roles")
-        .then(res => res.json())
-        .then(roleList => {
-            roleList.forEach(role => {
-                let el = document.createElement("option");
-                el.text = role.role.substring(5);
-                el.value = role.id;
-                $('#newUserRoles')[0].appendChild(el);
-            })
-        }
-        )
-     */
 
     const form = document.forms["formNewUser"];
 
@@ -51,7 +38,8 @@ async function newUser() {
         }).then(() => {
             form.reset();
             allUsers();
-            $('#allUsers').click();
+            $('#usersTableTab').click();
+
         })
     }
 }
