@@ -22,17 +22,13 @@ public class UserController {
         this.userDao = userDao;
     }
 
-
     @GetMapping("/api/user")
     @ResponseBody
     public ResponseEntity<User> showUser() {
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-     User user = (User) auth.getPrincipal();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-
-
-
 
     @GetMapping(value = "/user")
     public String printWelcome(ModelMap model, Principal principal) {
@@ -41,5 +37,3 @@ public class UserController {
         return "user/user";
     }
 }
-
-

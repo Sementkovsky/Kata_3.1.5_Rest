@@ -14,20 +14,11 @@ import java.util.List;
 @RequestMapping("/api")
 public class MyRestController {
 
-
     private final UserService userService;
-
 
     public MyRestController(UserService userService) {
         this.userService = userService;
     }
-
-//    @GetMapping("")
-//    public List<User> getAll() {
-// List<User> a = userService.listUsers();
-//        return a;
-    //  }
-
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAll() {
@@ -39,12 +30,8 @@ public class MyRestController {
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
 
-
     @PostMapping("/new")
     public ResponseEntity<User> create(@RequestBody User user) {
-        System.out.println("I'm here now");
-
-
         System.out.println(user);
         userService.add(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
@@ -55,12 +42,10 @@ public class MyRestController {
         userService.removeUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PatchMapping("/edit/{id}")
     public ResponseEntity<Void> editUser(@PathVariable("id") Long id, @RequestBody User user) {
-        System.out.println("Hi! I'm from edit controller");
         user.setId(id);
-        System.out.println(user);
-
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }

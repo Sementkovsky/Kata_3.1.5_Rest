@@ -17,10 +17,6 @@ async function newUser() {
         for (let i = 0; i < selected_options.length; i++) {
             rolesNamesArray[i] = selected_options[i].value;
         }
-  //      let rolesNames = rolesNamesArray;
-  //      console.log(rolesNamesArray);
-  //      console.log(rolesNames);
-  //      alert("Stop here to check rolesNames");
 
         fetch("http://localhost:8080/api/new", {
             method: 'POST',
