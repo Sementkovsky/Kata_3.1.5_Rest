@@ -5,14 +5,11 @@ function editUser() {
     const editForm = document.forms["formEditUser"];
     editForm.addEventListener("submit", ev => {
         ev.preventDefault();
-        let editUserRoles = [];
-        if (editForm.roleList !== undefined) {
-            for (let i = 0; i < editForm.roleList.options.length; i++) {
-                if (editForm.roleList.options[i].selected) editUserRoles.push({
-                    id: editForm.roleList.options[i].value,
-                    role: "ROLE_" + editForm.roleList.options[i].text
-                })
-            }
+        const selected_options = document.querySelector('#editUserRoles').selectedOptions;
+
+        let rolesNamesArray = new Array(selected_options.length);
+        for (let i = 0; i < selected_options.length; i++) {
+            rolesNamesArray[i] = selected_options[i].value;
         }
 
         fetch("http://localhost:8080/api/edit/" + editForm.id.value, {
@@ -27,7 +24,7 @@ function editUser() {
                 age: editForm.age.value,
                 email: editForm.email.value,
                 password: editForm.password.value,
-                roleList: editUserRoles
+                roles: rolesNamesArray
             })
         }).then(() => {
             $('#editFormCloseButton').click();
