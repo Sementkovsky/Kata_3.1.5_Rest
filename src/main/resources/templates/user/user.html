@@ -11,13 +11,11 @@
 </head>
 
 <body>
-<nav th:object="${user}" class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-dark">
   <h5>
     <a class="navbar-text text-white font-bold" id="headerUsername"></a>
     <a class="text-white font-bold">with roles:</a>
     <a class="text-white font-bold" id="headerRoles"></a>
-    <!-- <a class="navbar-text text-white" th:text=" ' with roles : ' + ${admin.roles}">Roles</a> -->
-
     </h5>
 
     <form th:action="@{/logout}" method="post">
@@ -88,11 +86,3 @@
 <script type="text/javascript" src="userPage.js"> </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
