@@ -33,6 +33,12 @@ public class MyRestController {
         return new ResponseEntity<>(userService.listUsers(), HttpStatus.OK);
     }
 
+    @GetMapping("/user/{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
+        System.out.println("Hi! I'm from delete controller");
+        return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
+    }
+
 
     @PostMapping("/new")
     public ResponseEntity<User> create(@RequestBody User user) {

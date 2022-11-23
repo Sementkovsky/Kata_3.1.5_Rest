@@ -168,6 +168,113 @@
   </div>
 </div>
 
+<!-- Модальное окно Delete -->
+
+<div class="modal" id="delete" tabindex="-1" role="dialog"
+     aria-labelledby="deleteModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="deleteModalLabel">Delete user</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <form class="text-center"
+              id="formDeleteUser">
+
+          <div class="form-group">
+            <label for="idde" class="col-form-label">
+              <p class="font-weight-bold">ID</p>
+            </label>
+            <input class="form-control"
+                   readonly
+                   type="number"
+                   id="idde"
+                   name="id"
+                   disabled/>
+          </div>
+
+          <div class="form-group">
+            <label for="usernamede" class="col-form-label">
+              <p class="font-weight-bold">First name</p>
+            </label>
+            <input class="form-control"
+                   type="text"
+                   id="usernamede"
+                   name="name"
+                   disabled/>
+          </div>
+
+          <div class="form-group">
+            <label for="lastNamede" class="col-form-label">
+              <p class="font-weight-bold">Last name</p>
+            </label>
+            <input class="form-control"
+                   type="text"
+                   id="lastNamede"
+                   name="secondName"
+                   disabled/>
+          </div>
+
+          <div class="form-group">
+            <label for="agede" class="col-form-label">
+              <p class="font-weight-bold">Age</p>
+            </label>
+            <input class="form-control"
+                   type="number"
+                   id="agede"
+                   name="age"
+                   disabled/>
+          </div>
+
+          <div class="form-group">
+            <label for="emailde" class="col-form-label">
+              <p class="font-weight-bold">Email</p>
+            </label>
+            <input class="form-control"
+                   type="text"
+                   id="emailde"
+                   name="email"/>
+          </div>
+
+          <div class="form-group">
+            <label for="passwordde" class="col-form-label">
+              <p class="font-weight-bold">Password</p>
+            </label>
+            <input class="form-control"
+                   type="text"
+                   id="passwordde"
+                   name="password"
+                   disabled/>
+          </div>
+
+          <div class="font-weight-bold"><label class="mb-0" for="rolede">Role</label>
+          </div>
+          <div class="mb-4">
+            <select class="custom-select col-5 mx-sm-3" id="rolede">
+              <option value="ADMIN">ADMIN</option>
+              <option value="USER">USER</option>
+            </select>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="deleteFormCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn btn-danger">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- Optional JavaScript; choose one of the two! -->
 
@@ -186,5 +293,7 @@
 <script type="text/javascript" src="usersList.js"> </script>
 <script type="text/javascript" src="userPage.js"> </script>
 <script type="text/javascript" src="addUser.js"> </script>
+<script type="text/javascript" src="delModal.js"> </script>
+<script type="text/javascript" src="deleteUser.js"> </script>
 </body>
 </html>
