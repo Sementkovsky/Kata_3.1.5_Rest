@@ -7,16 +7,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.User;
 
 @Controller
 public class UserController {
-    private final UserDao userDao;
-
-    public UserController(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @GetMapping(value = "/user")
     public String showUserPage() {

@@ -32,7 +32,7 @@ public class MyRestController {
     public ResponseEntity<User> create(@RequestBody User user) {
         System.out.println(user);
         userService.add(user);
-        return new ResponseEntity<User>(user, HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
