@@ -5,7 +5,7 @@ function deleteUser() {
     const deleteForm = document.forms["formDeleteUser"];
     deleteForm.addEventListener("submit", ev => {
         ev.preventDefault();
-        fetch("http://localhost:8080/api/user/delete/" + deleteForm.id.value, {
+        fetch("http://localhost:8080/api/delete/" + deleteForm.id.value, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

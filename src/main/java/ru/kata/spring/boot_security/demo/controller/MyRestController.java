@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserService;
@@ -35,7 +36,6 @@ public class MyRestController {
 
     @GetMapping("/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        System.out.println("Hi! I'm from delete controller");
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
 
@@ -49,6 +49,14 @@ public class MyRestController {
         userService.add(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        System.out.println("Hi! I'm from delete controller");
+        userService.removeUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 }
