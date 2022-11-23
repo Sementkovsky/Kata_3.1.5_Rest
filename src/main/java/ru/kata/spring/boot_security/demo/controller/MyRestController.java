@@ -52,11 +52,18 @@ public class MyRestController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        System.out.println("Hi! I'm from delete controller");
         userService.removeUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PatchMapping("/edit/{id}")
+    public ResponseEntity<Void> editUser(@PathVariable("id") Long id, @RequestBody User user) {
+        System.out.println("Hi! I'm from edit controller");
+        user.setId(id);
+        System.out.println(user);
 
+        userService.updateUser(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 }
