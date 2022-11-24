@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +11,6 @@ import ru.kata.spring.boot_security.demo.dao.UserDao;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,7 +65,7 @@ public class UserServiceImpl implements UserService {
         }
         user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         System.out.println(user);
-        List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
+        List<String> list = user.getRoles().stream().map(Role::getRole).collect(Collectors.toList());
         List<Role> roleList = listByRole(list);
         user.setRoles(roleList);
         userDao.add(user);
@@ -114,11 +111,6 @@ public class UserServiceImpl implements UserService {
             throw new UsernameNotFoundException("Not found!");
         }
         return user;
-    }
-
-    private Collection<? extends GrantedAuthority> auth(Collection<Role> roles) {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRole()))
-                .collect(Collectors.toList());
     }
 }
 
