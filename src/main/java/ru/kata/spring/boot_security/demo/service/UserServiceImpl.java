@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
         if (!userBase.getPassword().equals(user.getPassword())) {
             user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         }
-        List<String> list = user.getRoles().stream().map(r -> r.getRole()).collect(Collectors.toList());
+        List<String> list = user.getRoles().stream().map(Role::getRole).collect(Collectors.toList());
         List<Role> roleList = listByRole(list);
         user.setRoles(roleList);
         userDao.updateUser(user);

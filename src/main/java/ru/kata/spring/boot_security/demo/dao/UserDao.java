@@ -11,7 +11,7 @@ public interface UserDao {
 
     List<User> listUsers();
 
-    public boolean add(User user);
+    boolean add(User user);
 
     void saveUser(User user);
 
@@ -19,5 +19,5 @@ public interface UserDao {
 
     void updateUser(User user);
 
-    public User findByEmail(String email);
+    User findByEmail(String email);
 }
